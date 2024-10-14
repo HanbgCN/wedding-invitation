@@ -1,0 +1,31 @@
+.fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background-color: #f90;
+  z-index: 999; /* 增加 z-index 确保烟花在最上层 */
+}
+
+.firework {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  animation: explode 1s ease-out forwards;
+  z-index: 9999; /* 增加 z-index 确保烟花在最上层 */
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(20);
+    opacity: 0;
+  }
+}
