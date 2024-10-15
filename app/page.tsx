@@ -1,11 +1,11 @@
 "use client";
 
 import DynamicBgLayout from "@/components/Layout/DynamicBgLayout";
+import FireworksWidget from "@/components/widget/Fireworks";
 import MusicPlayer from "@/components/widget/MusicPlayer";
 import WishForm from "@/components/widget/WishForm";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
-import Fireworks, { FireworksRef } from "@/components/Fireworks";
+import { useEffect, useState } from "react";
 
 const pages = [
   function Page1() {
@@ -62,12 +62,37 @@ const pages = [
       </DynamicBgLayout>
     );
   },
+  function Page3() {
+    return (
+      <DynamicBgLayout>
+        <div className="flex flex-col items-center justify-center min-h-screen p-4">
+          <div className="bg-white bg-opacity-80 rounded-3xl shadow-2xl overflow-hidden p-6 max-w-2xl w-full">
+            <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
+              我们结婚啦
+            </h1>
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/picture/big-1.jpg"
+                alt="Wedding photo"
+                width={1200}
+                height={800}
+                layout="responsive"
+                objectFit="cover"
+                className="transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+            <p className="text-center mt-6 text-gray-600 italic">
+              &quot;爱共赴山河，共赴星辰大海&quot;
+            </p>
+          </div>
+        </div>
+      </DynamicBgLayout>
+    );
+  },
 ];
 
 export default function Home() {
   const [activeLayout, setActiveLayout] = useState(0);
-  const [showFireworks, setShowFireworks] = useState(false);
-  const fireworksRef = useRef<FireworksRef>(null);
 
   useEffect(() => {
     let touchStartY = 0;
@@ -104,34 +129,10 @@ export default function Home() {
     };
   }, []);
 
-  const handleFireworks = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setShowFireworks(true);
-    if (fireworksRef.current) {
-      fireworksRef.current.launch({
-        x: window.innerWidth / 2,
-        y: window.innerHeight,
-        targetY: window.innerHeight / 4,
-        speed: 2,
-        particles: 100,
-        spread: 70,
-        colors: [
-          "#ff0000",
-          "#00ff00",
-          "#0000ff",
-          "#ffff00",
-          "#ff00ff",
-          "#00ffff",
-        ],
-      });
-    }
-    // 5秒后隐藏烟花组件
-    setTimeout(() => setShowFireworks(false), 5000);
-  };
-
   return (
     <>
       <div className="h-screen relative overflow-auto">
-        {/* {[0, 1].map((index) => (
+        {[0, 1, 2].map((index) => (
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-500 ${
@@ -140,31 +141,26 @@ export default function Home() {
           >
             {pages[index]()}
           </div>
-        ))} */}
+        ))}
 
         <MusicPlayer className="absolute top-3 right-3 z-[99]" />
         <div className="absolute bottom-0 left-0 w-full z-[99999]">
-          <div className="flex justify-between items-center px-4 py-2 pb-[300px]">
+          <div className="flex justify-between items-center px-4 py-2">
             <WishForm
               onSubmit={(name, message) => {
                 console.log("收到祝福:", { name, message });
                 alert("感谢您的祝福！");
               }}
             />
-            <button
-              onClick={handleFireworks}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              送出烟花
-            </button>
+
+            <FireworksWidget />
+
             <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
               送嘉年华
             </button>
           </div>
         </div>
       </div>
-
-      {showFireworks && <Fireworks ref={fireworksRef} />}
     </>
   );
 }
