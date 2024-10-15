@@ -1,6 +1,7 @@
 "use client";
 
 import DynamicBgLayout from "@/components/Layout/DynamicBgLayout";
+import BigFireworksWidget from "@/components/widget/BigFireworks";
 import FireworksWidget from "@/components/widget/Fireworks";
 import MusicPlayer from "@/components/widget/MusicPlayer";
 import WishForm from "@/components/widget/WishForm";
@@ -154,10 +155,7 @@ export default function Home() {
             />
 
             <FireworksWidget />
-
-            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-              送嘉年华
-            </button>
+            <BigFireworksWidget />
           </div>
         </div>
       </div>

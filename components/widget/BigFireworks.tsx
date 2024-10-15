@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Fireworks from "fireworks-js";
 import * as _ from "lodash";
 
-export default function FireworksWidget() {
+export default function BigFireworksWidget() {
   const fireworksRef = useRef<Fireworks | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -13,23 +13,23 @@ export default function FireworksWidget() {
 
   useEffect(() => {
     if (containerRef.current) return;
-    containerRef.current = document.querySelector("#fireworksContainer");
+    containerRef.current = document.querySelector("#bigFireworksContainer");
     fireworksRef.current = new Fireworks(containerRef.current!, {
       hue: {
         min: 0,
         max: 345,
       },
       delay: {
-        min: 20,
-        max: 25,
+        min: 10,
+        max: 12,
       },
       decay: {
-        min: 0.02,
-        max: 0.025,
+        min: 0.025,
+        max: 0.03,
       },
       rocketsPoint: {
         min: 50,
-        max: 50,
+        max: 100,
       },
       lineWidth: {
         explosion: {
@@ -37,11 +37,11 @@ export default function FireworksWidget() {
           max: 3,
         },
       },
-      acceleration: 1.02,
+      acceleration: 3,
       friction: 0.96,
-      gravity: 1,
-      particles: 80,
-      explosion: 6,
+      gravity: 2.5,
+      particles: 120,
+      explosion: 8,
       opacity: 0.5,
       autoresize: true,
       brightness: {
@@ -64,7 +64,7 @@ export default function FireworksWidget() {
         ],
         volume: {
           min: 15,
-          max: 40,
+          max: 20,
         },
       },
       mouse: {
@@ -93,25 +93,25 @@ export default function FireworksWidget() {
       fireworksRef.current!.start();
       timerRef.current = setTimeout(async () => {
         fireworksRef.current!.waitStop();
-      }, 10000);
+      }, 500);
     },
-    10000,
-    { leading: true, trailing: false }
+    50,
+    { leading: true, trailing: true }
   );
 
   return (
     <>
       <div
-        id="fireworksContainer"
+        id="bigFireworksContainer"
         className="fixed z-[9999999] pointer-events-none h-[100vh] w-full max-h-[932px] left-0 top-0"
       />
       <button
-        onClick={handleFireworks}
-        className={`bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded transition-transform duration-80 ${
+        className={`bg-gradient-to-r from-red-600 via-orange-500 via-yellow-500 to-pink-500 text-white font-bold py-2 px-4 rounded transition-transform duration-80 ${
           isPressed ? "transform scale-90" : ""
         }`}
+        onClick={handleFireworks}
       >
-        送上烟花
+        手动加特林
       </button>
     </>
   );
