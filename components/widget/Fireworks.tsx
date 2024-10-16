@@ -93,7 +93,7 @@ export default function FireworksWidget() {
       fireworksRef.current!.start();
       timerRef.current = setTimeout(async () => {
         fireworksRef.current!.waitStop();
-      }, 10000);
+      }, 5000);
     },
     10000,
     { leading: true, trailing: false }

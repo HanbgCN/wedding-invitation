@@ -29,3 +29,26 @@
     opacity: 0;
   }
 }
+
+/* 隐藏所有滚动条 */
+* {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+/* WebKit 和基于 Chrome 的浏览器 */
+*::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
+
+/* 确保 body 和 html 也没有滚动条 */
+html, body {
+  overflow: hidden;
+}
+
+/* 对于需要滚动的元素，使用这个类 */
+.scrollable {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
