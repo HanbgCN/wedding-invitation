@@ -5,7 +5,7 @@ import Page1 from "@/components/Pages/Page1";
 import { useEffect, useState } from "react";
 
 export default function ContentPage() {
-  const pages = [<Page0 />, <Page1 />];
+  const pages = [<Page0 key="page0" />, <Page1 key="page1" />];
   const [activeLayout, setActiveLayout] = useState(0);
 
   useEffect(() => {
@@ -45,14 +45,14 @@ export default function ContentPage() {
 
   return (
     <>
-      {pages.map((_, index) => (
+      {pages.map((page, index) => (
         <div
-          key={index}
+          key={`page-wrapper-${index}`}
           className={`absolute inset-0 transition-opacity duration-500 ${
             activeLayout === index ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
         >
-          {pages[index]}
+          {page}
         </div>
       ))}
     </>

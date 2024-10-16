@@ -10,7 +10,7 @@ export default function Page1() {
           </h1>
           <div className="rounded-2xl overflow-hidden shadow-lg">
             <Image
-              src="/picture/big-1.jpg"
+              src="/picture/2.png"
               alt="Wedding photo"
               width={1200}
               height={800}

@@ -19,6 +19,7 @@ const WishForm: React.FC<WishFormProps> = ({ onSubmit }) => {
       return;
     }
     try {
+      setIsLoading(true);
       const success = await onSubmit(name, message);
       if (success) {
         setIsOpen(false);
@@ -30,8 +31,10 @@ const WishForm: React.FC<WishFormProps> = ({ onSubmit }) => {
         setError("提交失败，请稍后再试");
       }
     } catch (error) {
+      console.error(error);
       setError("提交失败，请稍后再试");
     }
+    setIsLoading(false);
   };
 
   return (
@@ -64,7 +67,7 @@ const WishForm: React.FC<WishFormProps> = ({ onSubmit }) => {
                 placeholder="您的祝福语"
                 className="w-full p-2 mb-4 border rounded h-32"
                 required
-                maxLength={30}
+                maxLength={10}
               ></textarea>
               <div className="flex justify-end">
                 <button
