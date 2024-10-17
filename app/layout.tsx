@@ -14,17 +14,13 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Happy Wedding",
-  description: "Happy Wedding Invitation",
-  viewport:
-    "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Happy Wedding",
-  },
-  formatDetection: {
-    telephone: true,
+  title: "Page Title",
+  description: "Page description",
+  openGraph: {
+    title: "婚礼邀请函丨韩宝国❤赵玉梅",
+    description: "这里是内容描述部分",
+    url: "https//thewedding.today",
+    images: ["/lovo-song.png"],
   },
 };
 
