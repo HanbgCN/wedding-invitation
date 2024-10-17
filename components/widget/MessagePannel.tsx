@@ -1,9 +1,10 @@
 import MessageList from "@/components/widget/MessageList";
-import { supabase } from "@/server/supabase";
+import { createClient } from "@/server/supabase";
 
 export const dynamic = "force-dynamic";
 
 export default async function MessagePannel() {
+  const supabase = createClient();
   const { data, error } = await supabase
     .from("message")
     .select("*")

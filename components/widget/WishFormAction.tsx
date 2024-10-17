@@ -1,10 +1,11 @@
-import { supabase } from "@/server/supabase";
+import { createClient } from "@/server/supabase";
 import WishForm from "./WishForm";
 
 export default function WishFormAction() {
   const handleSubmit = async (name: string, message: string) => {
     "use server";
 
+    const supabase = createClient();
     const { data, error } = await supabase
       .from("message")
       .insert({ owner: name, message: message, audit_status: -1 });
